@@ -31,7 +31,8 @@ def open_scene_folder(activeDoc):
     fullPath = os.path.join(activeDocPath, activeDocName)
 
     if c4d.GeGetCurrentOS() is c4d.OPERATINGSYSTEM_OSX:
-        subprocess.Popen('open -R "{0}"'.format(fullPath.replace(" ", "\ ")), shell=True)
+        sanitizePath = fullPath.replace(" ", "\ ")
+        subprocess.Popen("open -R {0}".format(sanitizePath), shell=True)
     else:
         subprocess.Popen('Explorer /select, {0}'.format(fullPath), shell=True)
 
